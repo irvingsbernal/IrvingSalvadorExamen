@@ -1,0 +1,78 @@
+﻿@page "/examenes"
+
+@using WsApiexamen.Dtos;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using ExamenBansi.Cliente.Services;
+
+@inject SweetAlertService swal;
+@inject IExamenService examenService;
+
+<h3>Examenes</h3>
+
+<a class="btn btn-success btn-sm mb-3" href="examen">Nuevo examen</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Nombre del examen</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if(listaExamenes == null)
+        {
+            <tr>
+                <td colspan="2" align="center">
+                    <img style="width:50px" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach(var item in listaExamenes)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="examen/@item.IdExamen">
+                            <i class="oi oi-pencil"></i>
+                            </a>
+                        <button type="button" class="btn btn-danger btn-sm ms-2" @onclick="(() => Eliminar(item.IdExamen))">
+                            <i class="oi oi-trash"></i>
+                            </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    List<ExamenDto>? listaExamenes = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        listaExamenes = await examenService.Consultar();
+    }
+
+    public async Task Eliminar(int id)
+    {
+        var resultado = await swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Eliminar examen",
+                Text = "¿Deseas eliminar este examen?",
+                Icon = SweetAlertIcon.Question,
+                ShowCancelButton = true
+            });
+
+        if (resultado.IsConfirmed)
+        {
+            var registroEliminado = await examenService.Eliminar(id);
+
+            if (registroEliminado)
+                listaExamenes = listaExamenes!.FindAll(e => e.IdExamen != id);
+        }
+    }
+
+}

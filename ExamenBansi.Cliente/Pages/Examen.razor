@@ -1,0 +1,73 @@
+﻿@page "/examen"
+@page "/examen/{idExamenActualizar:int}"
+
+@using WsApiexamen.Dtos;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using ExamenBansi.Cliente.Services;
+
+
+@inject SweetAlertService swal;
+@inject IExamenService examenService;
+@inject NavigationManager navegation;
+
+<h3>@titulo</h3>
+
+<EditForm Model="examen" on OnInvalidSubmit="OnvalidSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <InputText class="form-control" @bind-Value="examen.Nombre"></InputText>
+        <ValidationMessage For="@(() => examen.Nombre)"></ValidationMessage>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <InputText class="form-control" @bind-Value="examen.Descripcion"></InputText>
+        <ValidationMessage For="@(() => examen.Descripcion)"></ValidationMessage>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+        @btnTexto
+    </button>
+
+    <a class="btn btn-warning" href="examenes">Salir</a>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int idExamenActualizar { get; set; } = 0;
+
+    string titulo = string.Empty;
+    string btnTexto = string.Empty;
+
+    ExamenDto examen = new ExamenDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (idExamenActualizar != 0)
+        {
+            examen = await examenService.Buscar(idExamenActualizar);
+            btnTexto = "Actualizar";
+            titulo = "Actualizar examen";
+        }
+        else
+        {
+            btnTexto = "Agregar";
+            titulo = "Agregar examen";
+        }
+    }
+
+    private async Task OnvalidSubmit()
+    {
+        int idRetornado = 0;
+        if (idExamenActualizar == 0)
+            idRetornado = await examenService.Agregar(examen);
+        else
+            idRetornado = await examenService.Actualizar(examen);
+
+        if (idRetornado != 0)
+            navegation.NavigateTo("/examenes");
+    }
+}

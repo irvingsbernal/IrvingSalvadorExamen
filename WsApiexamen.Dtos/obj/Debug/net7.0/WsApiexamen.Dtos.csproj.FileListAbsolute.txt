@@ -1,0 +1,11 @@
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\bin\Debug\net7.0\WsApiexamen.Dtos.deps.json
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\bin\Debug\net7.0\WsApiexamen.Dtos.dll
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\bin\Debug\net7.0\WsApiexamen.Dtos.pdb
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\WsApiexamen.Dtos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\WsApiexamen.Dtos.AssemblyInfoInputs.cache
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\WsApiexamen.Dtos.AssemblyInfo.cs
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\WsApiexamen.Dtos.csproj.CoreCompileInputs.cache
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\WsApiexamen.Dtos.dll
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\refint\WsApiexamen.Dtos.dll
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\WsApiexamen.Dtos.pdb
+C:\Users\sbernal\source\repos\ExamenBansi\WsApiexamen.Dtos\obj\Debug\net7.0\ref\WsApiexamen.Dtos.dll
